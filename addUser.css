@@ -1,0 +1,49 @@
+#cusform{
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-left: 300px;
+    margin-right: 300px;
+    padding-left: 150px;
+    background-color: indigo;
+    display: block;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: white;
+    border-radius: 40px;
+    border-width: 6px;
+    border-style: solid ;
+    border-color:#4169e1;
+}
+input{
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 70%;
+}
+label{
+    font-weight: bold;
+    padding-right: 50px;
+    text-align: left;
+}
+h1{
+    color: darkslateblue;
+}
+hr{
+    height: 5px;
+    background-color: crimson;
+}
+body{
+    background-color: skyblue;
+}
+button{
+    width: 80px;
+    height: 30px;
+    font-weight: bold;
+    color: darkred;
+    margin-left: 150px;
+    background-color: #33bfff;
+    border-radius: 6px;
+}
+#addbutton:hover{
+    background-color: #1c54b2;
+    color: white;
+}

@@ -1,0 +1,129 @@
+/* style="background-color: chartreuse; line-height: 10mm;" */
+#logbody{
+    background-color: #56baec;
+}
+#divlog{
+    background-color: whitesmoke;
+    width: 500px;
+    height: 235px;
+    margin: auto;
+    margin-top: 190px;
+    border-width: 3px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color:slategrey;
+    text-align: center;
+    box-shadow: 10px 15px 10px #277faf;
+}
+#divlog h3{
+    color: #ee2553;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+#logform input{
+    padding: 6px;
+    border-radius: 5px;
+    text-align: center;
+    width: 50%;
+    margin-bottom: 10px;
+    box-shadow: 5px 5px 10px #360216;
+}
+#logform input:hover{
+    background-color: rgb(236, 227, 227);
+}
+
+
+#logbtn{
+    margin-top: 9px;
+    background-color: #56baec;
+    width: 15%;
+    border-radius: 5px;
+    border-color: turquoise;
+    color: white;
+    box-shadow: 2px 3px 5px #277faf;
+}
+
+#logbtn:hover{
+    background-color: #2795cc;
+}
+
+ul {
+    list-style-type: none;
+    background-color: #333;
+    overflow: hidden;
+}
+li{
+    float: left;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover:not(.active){
+    background-color: darkgrey;
+}
+
+.active {
+    background-color: cornflowerblue;
+}
+#div1{
+    margin-left: 100px;
+    width: 200px;
+    height: 150px;
+    background-color: lightgreen;
+    text-align: center;
+    float: left;
+    border-radius: 10px;
+}
+#div2{
+    float: left;
+    width: 200px;
+    height: 150px;
+    margin-left: 60px;
+    background-color: lightslategrey;
+    text-align: center;
+    border-radius: 10px;
+}
+#div3{
+    float: left;
+    width: 200px;
+    height: 150px;
+    margin-left: 60px;
+    background-color: mediumpurple;
+    text-align: center;
+    border-radius: 10px;
+}
+#div4{
+    float: left;
+    width: 200px;
+    height: 150px;
+    margin-left: 60px;
+    background-color: navajowhite;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#div5{
+    clear: both;
+    margin-left: 400px;
+    margin-top: 30px;
+    float: left;
+    width: 450px;
+    height: 250px;
+    background-color:thistle;
+    text-align: center;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+table{
+    border-collapse: collapse;
+    align-self: center;
+    margin: auto;
+}
+th, td{
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid slategrey;
+}
