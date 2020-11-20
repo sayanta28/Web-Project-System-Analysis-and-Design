@@ -19,6 +19,11 @@
     color: #ee2553;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+#logout{
+    background-color: #ee2553;
+    border-radius: 6px;
+    margin-left: 1100px;
+}
 #logform input{
     padding: 6px;
     border-radius: 5px;

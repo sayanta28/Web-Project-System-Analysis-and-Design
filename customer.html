@@ -5,6 +5,7 @@
     </head>
     <body>
         <link rel="stylesheet" href="customer.css">
+        <script src="customer.js"></script>
         <div style="margin-top: 60px;">
             <nav >
                 <ul id="nav">
@@ -20,7 +21,7 @@
                     <form action="addCustomer.html">
                         <label for="submit">Filter Customer</label>
                         <input type="text" placeholder="Search by Name....   Ex: Sayanta">
-                        <button type="button" id = "searchbtn"><i>Search</i></button>
+                        <button type="button" id = "searchbtn" ><i>Search</i></button>
                         <button type="submit" id = "addbtn">Add Customer</button>
                     </form>
                 </div>
@@ -35,7 +36,7 @@
                             <th>Address</th>
                         </tr>
                         <tr>
-                            <td>Sayanta Chy</td>
+                            <td id="tabletr" onclick = "clik()">Sayanta Chy</td>
                             <td>2450</td>
                             <td>4000</td>
                             <td>sayanta28@gmail.com</td>
@@ -61,6 +62,6 @@
                     </table>
                 </div>
             </main>
-        
-    </body>
+            
+        </body>
 </html>

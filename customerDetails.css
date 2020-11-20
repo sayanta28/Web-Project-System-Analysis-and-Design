@@ -20,3 +20,25 @@ li a:hover:not(.active){
 .active {
     background-color: cornflowerblue;
 }
+
+#main{
+    background-color: rgb(178, 113, 238);
+    width: auto;
+    padding-bottom: 70px;
+}
+#profile{
+    text-align: left;
+    text-indent: 180px;
+    padding: 7px;
+    border-radius: 10px;
+    background-color: rgb(241, 214, 59);
+    border-style: transparent;
+    box-shadow: 2px 5px 10px;
+    width: 50%;
+    font-weight: bold;
+    font-family: monospace;
+    text-shadow: 2px;
+    font-size: 19px;
+    margin: 0 auto;
+}
+
