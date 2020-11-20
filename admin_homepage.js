@@ -10,7 +10,7 @@ const firebaseConfig = {
     measurementId: "G-6DDKTQT9WW"
 };
 firebase.initializeApp(firebaseConfig);
-console.log("hellohi");
+//console.log("hellohi");
 
 //Firebase config end
 
@@ -22,7 +22,7 @@ document.getElementById("body").onload = function () {
        // console.log('Hello');
 
         let dataObj = snapshot.val();
-        console.log(dataObj)
+        //console.log(dataObj)
         let data = Object.values(snapshot.val());
 
         var createRowElem = function(value) {
@@ -48,7 +48,7 @@ document.getElementById("body").onload = function () {
             table.appendChild(trBody);
         });
         let str = sum.toString() + " Taka";
-        console.log("sum: " + sum)
+        //console.log("sum: " + sum)
         
         document.getElementById("totalsel").innerHTML = str;
                     
