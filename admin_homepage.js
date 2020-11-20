@@ -14,11 +14,12 @@ console.log("hellohi");
 
 //Firebase config end
 
+// Table Load Start
 document.getElementById("body").onload = function () {
-    console.log("hellohi22");
+    //console.log("hellohi22");
         var ref = firebase.database().ref('inventory');
         ref.on('value', function(snapshot){
-        console.log('Hello');
+       // console.log('Hello');
 
         let dataObj = snapshot.val();
         console.log(dataObj)
@@ -31,8 +32,11 @@ document.getElementById("body").onload = function () {
         }
         var table = document.getElementById('inventory-table');
         
-            
+        let sum = 0;
+        let temp = 0;
         data.map((number) => {
+            temp = number['totalsel'] * number['unitcost'];
+            sum += temp;
             var trBody = document.createElement('tr');
 
             trBody.appendChild(createRowElem(number['name'].toUpperCase()));
@@ -43,11 +47,18 @@ document.getElementById("body").onload = function () {
                         //}
             table.appendChild(trBody);
         });
+        let str = sum.toString() + " Taka";
+        console.log("sum: " + sum)
+        
+        document.getElementById("totalsel").innerHTML = str;
                     
     });
 }
+// Table load end
 
-
+//Log out btn
 function log(){
     window.location.assign("index.html");
 }
+
+// Total Sell Info
