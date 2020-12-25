@@ -3,7 +3,11 @@
     <head>
 
     </head>
-    <body>
+    <body id="body">
+        <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
+
         <link rel="stylesheet" href="customer.css">
         <script src="customer.js"></script>
         <div style="margin-top: 60px;">
@@ -18,15 +22,13 @@
             <main>
                 <h3 align = 'center'>Cutomers</h3>
                 <div id='search'>
-                    <form action="addCustomer.html">
-                        <label for="submit">Filter Customer</label>
-                        <input type="text" placeholder="Search by Name....   Ex: Sayanta">
-                        <button type="button" id = "searchbtn" ><i>Search</i></button>
-                        <button type="submit" id = "addbtn">Add Customer</button>
-                    </form>
+                    <label for="submit">Filter Customer</label>
+                    <input id="myinput" onkeyup="mysfunc()" placeholder="Search by Name....   Ex: Sayanta">
+                        <button id="addbtn" onclick="clik()">Add Customer</button>
+                
                 </div>
                 <div id = table>
-                    <table>
+                    <table id = "customer_table">
                         <tr>
                             <th>Customer Name</th>
                             <th>Total Due</th>
@@ -34,31 +36,9 @@
                             <th>Email</th>
                             <th>Phone Number</th>
                             <th>Address</th>
+                            <th>Registration Date</th>
                         </tr>
-                        <tr>
-                            <td id="tabletr" onclick = "clik()">Sayanta Chy</td>
-                            <td>2450</td>
-                            <td>4000</td>
-                            <td>sayanta28@gmail.com</td>
-                            <td>01515675348</td>
-                            <td>Chittagong</td>
-                        </tr>
-                        <tr>
-                            <td>Sayanta Chy</td>
-                            <td>2450</td>
-                            <td>4000</td>
-                            <td>sayanta28@gmail.com</td>
-                            <td>01515675348</td>
-                            <td>Chittagong</td>
-                        </tr>
-                        <tr>
-                            <td>Sayanta Chy</td>
-                            <td>2450</td>
-                            <td>4000</td>
-                            <td>sayanta28@gmail.com</td>
-                            <td>01515675348</td>
-                            <td>Chittagong</td>
-                        </tr>
+                       
                     </table>
                 </div>
             </main>
