@@ -37,6 +37,7 @@ document.getElementById("body").onload = function () {
             var trBody = document.createElement('tr');
 
             trBody.appendChild(createRowElem(number['name']));
+                trBody.appendChild(createRowElem(number['id']));
                 trBody.appendChild(createRowElem(number['totalDue']));
                 trBody.appendChild(createRowElem(number['totalPaid']));
                 trBody.appendChild(createRowElem(number['email']));

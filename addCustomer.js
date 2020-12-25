@@ -13,7 +13,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 function Ready(){
-    nameV = document.getElementById('name').value;
+    nameV = document.getElementById('name').value
     idV = document.getElementById('id').value;
     dateV = document.getElementById('date').value;
     emailV = document.getElementById('email').value;
@@ -21,16 +21,41 @@ function Ready(){
     addV = document.getElementById('address').value;
 }
 
+
+
 document.getElementById('addbutton').onclick = function () {
     Ready();
+    if (nameV == "" || nameV == null || idV == "" || idV == null || emailV == "" || emailV == null || numV == "" || numV == null || addV == "" || addV == null) {
+        alert("All field Must be filled out");
+        return false;
+      }
+    else if(dateV == "" || dateV == null){
+        alert("Date field Must be filled out");
+        return false;
+    }
+    else {
+    var div = document.getElementById('classId');
+    div.style.visibility = "visible";
     firebase.database().ref('customer/' + idV).set({
         address: addV,
+        id: idV,
         email: emailV,
         name: nameV,
         phone: numV,
         regDate: dateV,
         totalDue: 0,
         totalPaid: 0
+
     });
-    console.log('Tapp Tapp');
+
+    // console.log('Tapp Tapp');
+    setTimeout(swith, 5000);
+    // console.log('Tapp Tapp2');
+    }
+    
+}
+
+function swith() {
+    window.location.assign("customer.html");
+    //console.log("Hellllo2");
 }
