@@ -15,7 +15,28 @@ firebase.initializeApp(firebaseConfig);
 
 document.getElementById("body").onload = function () {
     //console.log("hellohi22");
+        var createRowElem = function(value) {
+            var td = document.createElement('td');
+            td.appendChild(document.createTextNode(value));
+            return td;
+        }
+
+        //new
+        
         var ref = firebase.database().ref('customer');
+        /*
+        ref = firebase.database().ref('customer');
+        ref.once('value', (snapshot) => {
+                //var childSnapshot = 'customer';
+                snapshot.forEach(childSnapshot => {
+                    var childKey = childSnapshot.key;
+                    var childData = childSnapshot.val();
+                });
+        });
+
+        */
+
+        //Old
         ref.on('value', function(snapshot){
         //console.log('Hello');
         //console.log(snapshot);
@@ -24,11 +45,7 @@ document.getElementById("body").onload = function () {
         console.log(dataObj);
         let data = Object.values(snapshot.val());
 
-        var createRowElem = function(value) {
-            var td = document.createElement('td');
-            td.appendChild(document.createTextNode(value));
-            return td;
-        }
+        
         var table = document.getElementById('customer_table');
         
         

@@ -31,27 +31,50 @@ document.getElementById('addbutton').onclick = function () {
       }
     else if(dateV == "" || dateV == null){
         alert("Date field Must be filled out");
+        // Start
+
         return false;
     }
+    // else if(idV){
+        
+    // }
     else {
-    var div = document.getElementById('classId');
-    div.style.visibility = "visible";
-    firebase.database().ref('customer/' + idV).set({
-        address: addV,
-        id: idV,
-        email: emailV,
-        name: nameV,
-        phone: numV,
-        regDate: dateV,
-        totalDue: 0,
-        totalPaid: 0
+        ref = firebase.database().ref('customer');
+        ref.once('value', (snapshot) => {
+                //var childSnapshot = 'customer';
+                snapshot.forEach(childSnapshot => {
+                    var id = childSnapshot.key;
+                    //console.log(childSnapshot.val());
+                    if(id == idV){
+                        alert("Customer ID must be unique!");
+                        return false;
+                    }
+                });
+                console.log('Insert');
+                insert();
+        });
 
-    });
+        function insert(){
 
-    // console.log('Tapp Tapp');
-    setTimeout(swith, 5000);
-    // console.log('Tapp Tapp2');
-    }
+            var div = document.getElementById('classId');
+            div.style.visibility = "visible";
+            firebase.database().ref('customer/' + idV).set({
+                address: addV,
+                id: idV,
+                email: emailV,
+                name: nameV,
+                phone: numV,
+                regDate: dateV,
+                totalDue: 0,
+                totalPaid: 0
+    
+            });
+    
+            // console.log('Tapp Tapp');
+            setTimeout(swith, 5000);
+            // console.log('Tapp Tapp2');
+            }
+        }
     
 }
 
