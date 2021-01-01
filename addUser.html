@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+    </head>
     <body>
         <link rel="stylesheet" href="addUser.css">
+        <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
+        <script src="addUser.js"></script>
+       
+
         <div id = "form">
-            <h1 align="center" style="margin-bottom: 10px;">Add Product in Inventory</h1>
+            <h1 align="center" style="margin-bottom: 10px;">Add New Product in Inventory</h1>
             <hr style="margin-bottom: 20px;">
             <form id="cusform" action="userPage.html">
-                <label for="name">User-Name:</label><br>
-                <input id="name" type="text" placeholder="Enter User Name [Ex: sayanta28]"><br>
-                <label for="due">Default Password</label><br>
-                <input id="due" type="text" placeholder="Type 'user'"><br>
+                <label for="id">Prod-ID</label><br>
+                <input id="id" type="number" placeholder="Enter Unique Four Digit Prod-ID [Ex: 1021]"><br>
+                <label for="name">Prod-Name</label><br>
+                <input id="name" type="text" placeholder="Ex: Write 'Disel'"><br>
                 <label for="date">Registration Date</label><br>
                 <input id="date" type="date"><br>
-                <label for="email">Email:</label><br>
-                <input id="email" type="email" placeholder="Enter email [ example@gmail.com ]"><br>
-                <label for="num">Phone No:</label><br>
-                <input id="num" type="text" placeholder="Enter 11-digit Phone Number [Ex: 018XXXXXXXX]"><br>          
-                <button id="addbutton" type="submit">Add User</button>
+                <label for="amount">Amount of Unit Buy</label><br>
+                <input id="amount" type="number" placeholder="Enter Unit Amount [Ex: For 12 Liter = 12]"><br>
+                <label for="buyCost">Buy Cost [Per Unit]</label><br>
+                <input id="buyCost" type="number" placeholder="Enter Buy Cost (Per Unit) [Ex: For 90 tk per Liter = 90]"><br>
+                <label for="sellCost">Sell Cost [Per Unit]</label><br>
+                <input id="sellCost" type="number" placeholder="Enter Sell Cost (Per Unit) [Ex: For 110 tk per Liter = 110]"><br>
+                <label for="mobNo">Contact Number of Whole-Seller</label><br>
+                <input id="mobNo" type="text" placeholder="Enter 11-digit Phone Number [Ex: 018XXXXXXXX]"><br>          
+                <button id="addbutton" type="button" onclick="tap()">Add User</button>
             </form>
         </div>
+        <div class="loader" id="classId"></div>
     </body>
 </html>

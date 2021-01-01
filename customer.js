@@ -24,48 +24,64 @@ document.getElementById("body").onload = function () {
         //new
         
         var ref = firebase.database().ref('customer');
-        /*
-        ref = firebase.database().ref('customer');
+        
+        //ref2 = firebase.database().ref('customer');
         ref.once('value', (snapshot) => {
                 //var childSnapshot = 'customer';
+                var table = document.getElementById('customer_table');
                 snapshot.forEach(childSnapshot => {
                     var childKey = childSnapshot.key;
                     var childData = childSnapshot.val();
+                    //console.log(childKey);
+                    //console.log(childData['name']);
+
+                    var trBody = document.createElement('tr');
+
+                    trBody.appendChild(createRowElem(childData['name']));
+                        trBody.appendChild(createRowElem(childData['id']));
+                        trBody.appendChild(createRowElem(childData['totalDue']));
+                        trBody.appendChild(createRowElem(childData['totalPaid']));
+                        trBody.appendChild(createRowElem(childData['email']));
+                        trBody.appendChild(createRowElem(childData['phone']));
+                        trBody.appendChild(createRowElem(childData['address']));
+                        trBody.appendChild(createRowElem(childData['regDate']));
+                                //}
+                    table.appendChild(trBody);
                 });
         });
 
-        */
+        
 
-        //Old
-        ref.on('value', function(snapshot){
-        //console.log('Hello');
-        //console.log(snapshot);
+    //     //Old
+    //     ref.on('value', function(snapshot){
+    //     //console.log('Hello');
+    //     //console.log(snapshot);
 
-        let dataObj = snapshot.val();
-        console.log(dataObj);
-        let data = Object.values(snapshot.val());
+    //     let dataObj = snapshot.val();
+    //     // console.log(dataObj);
+    //     let data = Object.values(snapshot.val());
 
         
-        var table = document.getElementById('customer_table');
+    //     var table = document.getElementById('customer_table');
         
         
-        data.map((number) => {
+    //     data.map((number) => {
         
-            var trBody = document.createElement('tr');
+    //         var trBody = document.createElement('tr');
 
-            trBody.appendChild(createRowElem(number['name']));
-                trBody.appendChild(createRowElem(number['id']));
-                trBody.appendChild(createRowElem(number['totalDue']));
-                trBody.appendChild(createRowElem(number['totalPaid']));
-                trBody.appendChild(createRowElem(number['email']));
-                trBody.appendChild(createRowElem(number['phone']));
-                trBody.appendChild(createRowElem(number['address']));
-                trBody.appendChild(createRowElem(number['regDate']));
-                        //}
-            table.appendChild(trBody);
-        });
+    //         trBody.appendChild(createRowElem(number['name']));
+    //             trBody.appendChild(createRowElem(number['id']));
+    //             trBody.appendChild(createRowElem(number['totalDue']));
+    //             trBody.appendChild(createRowElem(number['totalPaid']));
+    //             trBody.appendChild(createRowElem(number['email']));
+    //             trBody.appendChild(createRowElem(number['phone']));
+    //             trBody.appendChild(createRowElem(number['address']));
+    //             trBody.appendChild(createRowElem(number['regDate']));
+    //                     //}
+    //         table.appendChild(trBody);
+    //     });
                     
-    });
+    // });
 }
 
 // SearchBTN

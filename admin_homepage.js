@@ -17,42 +17,67 @@ firebase.initializeApp(firebaseConfig);
 // Table Load Start
 document.getElementById("body").onload = function () {
     //console.log("hellohi22");
+    var createRowElem = function(value) {
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(value));
+        return td;
+    }
         var ref = firebase.database().ref('inventory');
-        ref.on('value', function(snapshot){
-       // console.log('Hello');
+            ref.once('value', (snapshot) => {
+        // console.log('Hello');
 
-        let dataObj = snapshot.val();
-        //console.log(dataObj)
-        let data = Object.values(snapshot.val());
+            ////let dataObj = snapshot.val();
+            //console.log(dataObj)
+            ////let data = Object.values(snapshot.val());
 
-        var createRowElem = function(value) {
-            var td = document.createElement('td');
-            td.appendChild(document.createTextNode(value));
-            return td;
-        }
-        var table = document.getElementById('inventory-table');
-        
-        let sum = 0;
-        let temp = 0;
-        data.map((number) => {
-            temp = number['totalsel'] * number['unitcost'];
-            sum += temp;
-            var trBody = document.createElement('tr');
+            
+                var table = document.getElementById('inventory-table');
+                let sum = 0;
+                let temp = 0;
+                snapshot.forEach(childSnapshot => {
+                    var childKey = childSnapshot.key;
+                    var childData = childSnapshot.val();
+                    temp = childData['totalsel'] * childData['unitcost'];
+                    sum += temp;
+                    //console.log(childKey);
+                    //console.log(childData['name']);
 
-            trBody.appendChild(createRowElem(number['name'].toUpperCase()));
-                trBody.appendChild(createRowElem(number['amount']));
-                trBody.appendChild(createRowElem(number['totalbuy']));
-                trBody.appendChild(createRowElem(number['totalsel']));
-                trBody.appendChild(createRowElem(number['unitcost']));
-                        //}
-            table.appendChild(trBody);
+                    var trBody = document.createElement('tr');
+
+                    trBody.appendChild(createRowElem(childData['name'].toUpperCase()));
+                        trBody.appendChild(createRowElem(childData['amount']));
+                        trBody.appendChild(createRowElem(childData['totalbuy']));
+                        trBody.appendChild(createRowElem(childData['totalsel']));
+                        trBody.appendChild(createRowElem(childData['unitcost']));
+                                //}
+                    table.appendChild(trBody);
+            });
+
+            let str = sum.toString() + " Taka";
+            document.getElementById("totalsel").innerHTML = str;
         });
-        let str = sum.toString() + " Taka";
-        //console.log("sum: " + sum)
+        //Old
+    //     let sum = 0;
+    //     let temp = 0;
+    //     data.map((number) => {
+    //         temp = number['totalsel'] * number['unitcost'];
+    //         sum += temp;
+    //         var trBody = document.createElement('tr');
+
+    //         trBody.appendChild(createRowElem(number['name'].toUpperCase()));
+    //             trBody.appendChild(createRowElem(number['amount']));
+    //             trBody.appendChild(createRowElem(number['totalbuy']));
+    //             trBody.appendChild(createRowElem(number['totalsel']));
+    //             trBody.appendChild(createRowElem(number['unitcost']));
+    //                     //}
+    //         table.appendChild(trBody);
+    //     });
+    //     let str = sum.toString() + " Taka";
+    //     //console.log("sum: " + sum)
         
-        document.getElementById("totalsel").innerHTML = str;
+    //     document.getElementById("totalsel").innerHTML = str;
                     
-    });
+    // });
 }
 // Table load end
 

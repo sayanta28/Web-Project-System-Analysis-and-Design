@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        
-    </head>
+    <head></head>
     <body>
-        <p id="try">Hello</p>
+        <link rel="stylesheet" href="try.css">
+        <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
         <script src="try.js"></script>
+        
+        <div id = "form">
+            <h1 align="center" style="margin-bottom: 10px;">Service Form</h1>
+            <hr style="margin-bottom: 20px;">
+            <form id="cusform" action="customer.html">
+                <label for="cusID">Customer ID</label><br>
+                <input id="cusID" type="text" placeholder="Enter Customer ID"><br><br>
+                
+                <label for="prodID">Choose a Product ID:</label>
+                <input id="prodID" type="text" placeholder="Enter Customer ID"><br><br>
+
+                <label for="date">Service Date</label><br>
+                <input id="date" type="date"><br>
+                <label for="unit">Amount</label><br>
+                <input id="unit" type="number" placeholder="Enter amount [ ]"><br>
+                <label for="num">Phone No:</label><br>
+                <input id="num" type="text" placeholder="Enter 11-digit Phone Number [Ex: 018XXXXXXXX]"><br>
+                <button id="billbutton" type="button" onclick="tap()">Generate Bill</button>
+            </form>
+           
+            
+        </div>
+
+        <div class="loader" id="classId"></div>
+        <div class="card" id="billShowID">
+            <label style="margin:0;display:inline;float:left"> Prod-ID</label> <p id="prodIDP" style="margin:0;display:inline;float:right"">100</p> <br>
+            <label style="margin:0;display:inline;float:left">Prod Name</label><p id="prodNP" style="margin:0;display:inline;float:right"">Disel</p> <br>
+            <label style="margin:0;display:inline;float:left">Unit Amount</label><p id="unitP" style="margin:0;display:inline;float:right">10</p> <br>
+            <label style="margin:0;display:inline;float:left">Total Bill</label><p id="billP" style="margin:0;display:inline;float:right">210</p> <br>
+            <label style="margin:0;display:inline;float:left">Cust-ID</label><p id="cusIDP" style="margin:0;display:inline;float:right"">100</p> <br>
+            <button id="payment" type="button" onclick="serviceInfo()">Pay Bill</button>
+        </div>
+        
     </body>
 </html>

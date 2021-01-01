@@ -47,3 +47,23 @@ button{
     background-color: #1c54b2;
     color: white;
 }
+
+.loader {
+    border: 16px solid #9ecaad;
+    border-radius: 70%;
+    border-top: 18px solid rgb(0, 122, 0);
+    margin-left: 560px;
+    width: 120px;
+    height: 120px;
+    bottom: 360px;
+    visibility: hidden;
+    -webkit-animation: spin 5s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    position: relative
+}
+  
+  /* Safari */
+@keyframes spin {
+   0% { transform: rotate(0deg); }
+   100% { transform: rotate(360deg); }
+}

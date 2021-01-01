@@ -36,13 +36,6 @@ li a:hover:not(.active){
     padding-left: 10px;
     margin-left: 10px;
 }
-#searchbtn{
-    margin-left: 10px;
-    height: 43px;
-    background-color: cadetblue;
-    color: white;
-    font-family: monospace;
-}
 #addbtn{
     margin-left: 10px;
     height: 43px;

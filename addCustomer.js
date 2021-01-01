@@ -39,6 +39,7 @@ document.getElementById('addbutton').onclick = function () {
         
     // }
     else {
+        var test = false;
         ref = firebase.database().ref('customer');
         ref.once('value', (snapshot) => {
                 //var childSnapshot = 'customer';
@@ -46,39 +47,47 @@ document.getElementById('addbutton').onclick = function () {
                     var id = childSnapshot.key;
                     //console.log(childSnapshot.val());
                     if(id == idV){
+                        console.log(1);
+                        test = true;
                         alert("Customer ID must be unique!");
+                        console.log(2);
                         return false;
                     }
                 });
-                console.log('Insert');
-                insert();
+                //Bug Fix Use it
+                if(test == false){
+                    console.log('Insert');
+                    console.log(3);
+                        insert();
+                    console.log(4);
+                }
+        });
+       
+        
+    }
+    
+    function insert(){
+
+        var div = document.getElementById('classId');
+        div.style.visibility = "visible";
+        firebase.database().ref('customer/' + idV).set({
+            address: addV,
+            id: idV,
+            email: emailV,
+            name: nameV,
+            phone: numV,
+            regDate: dateV,
+            totalDue: 0,
+            totalPaid: 0
+
         });
 
-        function insert(){
-
-            var div = document.getElementById('classId');
-            div.style.visibility = "visible";
-            firebase.database().ref('customer/' + idV).set({
-                address: addV,
-                id: idV,
-                email: emailV,
-                name: nameV,
-                phone: numV,
-                regDate: dateV,
-                totalDue: 0,
-                totalPaid: 0
-    
-            });
-    
-            // console.log('Tapp Tapp');
-            setTimeout(swith, 5000);
-            // console.log('Tapp Tapp2');
-            }
+        // console.log('Tapp Tapp');
+        setTimeout(swith, 5000);
+        // console.log('Tapp Tapp2');
         }
-    
-}
-
-function swith() {
+    }
+    function swith() {
     window.location.assign("customer.html");
     //console.log("Hellllo2");
 }
