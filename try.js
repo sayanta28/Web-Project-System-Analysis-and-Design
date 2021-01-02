@@ -11,15 +11,20 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
+
 function Ready(){
     cusIDV = document.getElementById('cusID').value;
     prodIDV = document.getElementById('prodID').value
     dateV = document.getElementById('date').value;
     unitV = document.getElementById('unit').value;
+    unitV = parseInt(unitV);
     mobNoV = document.getElementById('num').value;
 }
-var prodName, cost, cusName, profit;
-var maxValue;
+var prodName, cost, cusName, profit, totalBuyNow, totalSelNow;
+var maxValue, cusCost;
+var currentTotalProfit, currentTotalSell; 
+
+// Onload Works Bug
 
 function tap(){
     Ready();
@@ -33,7 +38,7 @@ function tap(){
         return false;
     }
     else{
-        
+        // Add totalbBuyNow = 0 Condition and token ID + 2 solve
         ref = firebase.database().ref('inventory/'+ prodIDV);
         ref.once('value', (snapshot) => {
                 //var childSnapshot = 'customer';
@@ -41,11 +46,18 @@ function tap(){
                 //     var id = childSnapshot.key;
 
                     const val = snapshot.val();
-                    const setCost = val['unitcost'];
-                    const buyCost = val['buycost'];
+                    var setCost = val['unitcost'];
+                    setCost = parseInt(setCost);
+                    var buyCost = val['buycost'];
+                    buyCost = parseInt(buyCost);
+                    totalBuyNow = val['amount'];
+                    totalBuyNow = parseInt(totalBuyNow);
+                    totalSelNow = val['totalsel'];
+                    totalSelNow = parseInt(totalSelNow);
                     prodName = val['name'];
                     cost = setCost * unitV;
                     profit = (setCost - buyCost) * unitV
+                    profit = parseInt(profit);
                     console.log(prodName);
                     console.log(cost);
 
@@ -61,14 +73,32 @@ function tap(){
                         
                         const valTwo = snapshot.val();
                         cusName = valTwo['name'];
-                        console.log(cusName);
-                        console.log(typeof(cusName));
+                        cusCost = valTwo['totalPaid'];
+                        cusCost = parseInt(cusCost);
+                        //console.log(cusName);
+                        //console.log(typeof(cusName));
 
 
                         //console.log(childSnapshot.val())                            //simplyfy korte hobe
-            });
-        
-            
+                });
+                
+                refThree = firebase.database().ref('tokenRecord/totalProfit');
+                refThree.once('value', (snapshot) => {
+
+                    currentTotalProfit = snapshot.val();
+                    currentTotalProfit = parseInt(currentTotalProfit)
+                    console.log('totalProfit');
+                    console.log(snapshot.val());
+                });
+                refFour = firebase.database().ref('tokenRecord/totalSell');
+                refFour.once('value', (snapshot) => {
+
+                    currentTotalSell = snapshot.val();
+                    currentTotalSell = parseInt(currentTotalSell);
+                    console.log('totalSell');
+                    console.log(snapshot.val());
+                });
+
             var loader = document.getElementById("classId");
             loader.style.visibility = "visible";
             setTimeout(function() {
@@ -96,7 +126,7 @@ function tap(){
         maxValueRef = firebase.database().ref('tokenRecord/currentToken');
         maxValueRef.once('value', (snapshot) => {
             maxValue = snapshot.val();
-            maxValue += 1;
+            maxValue += 1; ///////
             console.log(maxValue);
         });
 }
@@ -107,9 +137,14 @@ function serviceInfo(){
     console.log(maxValue);
     setTimeout(wait,2000);
     addValue(maxValue);
+    setTimeout(wait2,2000);
 }
 function wait() {
     alert("waiting");
+}
+function wait2(){
+    window.location.assign("service.html");
+
 }
 function addValue(maxValue){
     console.log(document.getElementById("prodIDP"));
@@ -123,9 +158,33 @@ function addValue(maxValue){
         profit: profit,
         serviceDate: dateV
     });
+
+
     // BUg and Bug 
-    maxValue += 1;
+    //maxValue += 1;
+    currentTotalProfit = parseInt(currentTotalProfit);
+    currentTotalSell = parseInt(currentTotalSell);
+    profit = parseInt(profit);
+    cost = parseInt(cost);
+
+    currentTotalProfit = currentTotalProfit + profit;
+    currentTotalSell = currentTotalSell + cost;
+
     firebase.database().ref('tokenRecord/').update({
-        currentToken: maxValue 
+        currentToken: maxValue,
+        totalProfit: currentTotalProfit,
+        totalSell: currentTotalSell
     });
+
+    totalBuyNow = totalBuyNow - unitV;
+    totalSelNow = totalSelNow + unitV;
+    firebase.database().ref('inventory/' + prodIDV).update({
+        amount: totalBuyNow,
+        totalsel: totalSelNow
+    });
+    cost += cusCost;
+    firebase.database().ref('customer/'+ cusIDV).update({
+        totalPaid: cost
+    });
+
 }

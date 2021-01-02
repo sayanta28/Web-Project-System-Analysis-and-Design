@@ -10,12 +10,12 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-
+var presentAmount, totalBuyAmount, totalSelAmount;
 
 function Ready(){
     idV = document.getElementById('id').value;
-    nameV = document.getElementById('name').value
-    dateV = document.getElementById('date').value;
+    //nameV = document.getElementById('name').value
+   // dateV = document.getElementById('date').value;
     amountV = document.getElementById('amount').value;
     buyCostV = document.getElementById('buyCost').value;
     sellCostV = document.getElementById('sellCost').value;
@@ -47,18 +47,23 @@ function tap() {
                         var id = childSnapshot.key;
                         //console.log(childSnapshot.val());
 
+                        
+                    var childData = childSnapshot.val();
+                    //console.log(childKey);
+                    presentAmount = childData['amount'];
+                    presentAmount = parseInt(presentAmount);
+                    totalBuyAmount = childData['totalbuy'];
+                    totalBuyAmount = parseInt(totalBuyAmount);
+                    totalSelAmount = childData['totalsel'];
+                    totalSelAmount = parseInt(totalSelAmount);
+
                         //simplyfy korte hobe
                             if(id == idV){
-                                test = true;
-                                alert("Product ID must be unique!");
-                                return false;
+                                insert();
                                 //test = true;
                             }
                     });
-                    if(test == false){
-                        insert();
-                    } 
-                    //else return false;
+                   
             });
             
            
@@ -76,20 +81,22 @@ function tap() {
 }
 
 function insert(){
-    amountV = parseInt(amountV);
-    buyCostV = parseInt(buyCostV);
-    sellCostV = parseInt(sellCostV);
     var div = document.getElementById('classId');
     div.style.visibility = "visible";
-    firebase.database().ref('inventory/' + idV).set({
-            id: idV,
-            name: nameV,
-            regDate: dateV,
-            amount: amountV,
+
+    presentAmount = parseInt(presentAmount);
+    totalBuyAmount = parseInt(totalBuyAmount);
+    totalSelAmount = parseInt(totalSelAmount);
+    buyCostV = parseInt(buyCostV);
+    sellCostV = parseInt(sellCostV);
+    presentAmount = presentAmount + amountV;
+    totalBuyAmount = totalBuyAmount + presentAmount;
+
+    firebase.database().ref('inventory/' + idV).update({
+            amount: presentAmount,
             buycost: buyCostV,
             unitcost: sellCostV,
-            totalbuy: amountV,
-            totalsel: 0
+            totalbuy: totalBuyAmount
         });
 
     setTimeout(swith, 5000); 

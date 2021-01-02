@@ -7,41 +7,38 @@
         <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
-        <link rel="stylesheet" href="inventoryPage.css">
-        <script src="inventoryPage.js"></script>
+        <link rel="stylesheet" href="service.css">
+        <script src="service.js"></script>
         <div style="margin-top: 60px;">
             <nav >
                 <ul id="nav">
                     <li><a href="admin_homepage.html" >Dashboard</a></li>
                     <li><a href="customer.html">Customer</a></li>
-                    <li><a href="inventoryPage.html" class="active">Inventory</a></li>
-                    <li><a href="service.html">Service Form</a></li>
+                    <li><a href="inventoryPage.html">Inventory</a></li>
+                    <li><a href="try.html" class="active">Service Form</a></li>
                 </ul>
             </nav>
             <main>
                 <h3 align = 'center'>Inventory Details</h3>
                 <div id='search'>
-                    <form action="addUser.html">
+                    <form action="try.html">
                         <label for="submit">Filter User</label>
                         <input id="myinput" onkeyup="mysfunc()" placeholder="Search by username....   Ex: sayanta28">
                       
-                        <button type="submit" id = "addbtn">Register New Product</button>
-                        <button type="button" id = "addbtn" onclick="clickDirect()">Add Product Amount</button>
+                        <button type="submit" id = "addbtn">Service Form</button>
 
                     </form>
                 </div>
                 <div id="table">
                     <table id="tableTwo">
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Present Amount</th>
-                            <th>Per Unit Cost</th>
-                            <th>Total Buy Amount</th>
-                            <th>Total Sel Amount</th>
-                            <th>Reg. Date</th>
-                            <th>Per Unit Buy Cost</th>
-                        </tr>
+                            <th>Token ID</th>
+                            <th>Customer ID</th>
+                            <th>Prod ID</th>
+                            <th>Buy Amount</th>
+                            <th>Pay Bill</th>
+                            <th>Company Profit</th>
+                            <th>Transection Date</th>
                     </table>
                 </div>
             </main>

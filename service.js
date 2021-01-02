@@ -21,7 +21,7 @@ document.getElementById("body").onload = function () {
 
         //new
         
-        var ref = firebase.database().ref('inventory');
+        var ref = firebase.database().ref('tokenRecord');
         
         //ref2 = firebase.database().ref('customer');
         ref.once('value', (snapshot) => {
@@ -29,22 +29,30 @@ document.getElementById("body").onload = function () {
                 var table = document.getElementById('tableTwo');
                 snapshot.forEach(childSnapshot => {
                     var childKey = childSnapshot.key;
-                    var childData = childSnapshot.val();
-                    //console.log(childKey);
-                    console.log(childData['name']);
+                    var childKey2 = parseInt(childKey);
+                    // console.log();
+                    if(childKey != 'currentToken' && childKey != 'totalProfit' && childKey != 'totalSell' ){
+                    
+                        var childData = childSnapshot.val();
+                        //console.log(childKey);
+                        //console.log(childData['name']);
+    
+                        var trBody = document.createElement('tr');
+    
+                        trBody.appendChild(createRowElem(childData['tokenID']));
+                        trBody.appendChild(createRowElem(childData['customerID']));
+                        trBody.appendChild(createRowElem(childData['prodID']));
+                            trBody.appendChild(createRowElem(childData['amount']));
+                            trBody.appendChild(createRowElem(childData['payBill']));
+                            trBody.appendChild(createRowElem(childData['profit']));
+                            trBody.appendChild(createRowElem(childData['serviceDate']));
+                                    //}
+                        table.appendChild(trBody);
+                       // break;
+                    }
+                    else{
 
-                    var trBody = document.createElement('tr');
-
-                    trBody.appendChild(createRowElem(childData['id']));
-                    trBody.appendChild(createRowElem(childData['name']));
-                        trBody.appendChild(createRowElem(childData['amount']));
-                        trBody.appendChild(createRowElem(childData['unitcost']));
-                        trBody.appendChild(createRowElem(childData['totalbuy']));
-                        trBody.appendChild(createRowElem(childData['totalsel']));
-                        trBody.appendChild(createRowElem(childData['regDate']));
-                        trBody.appendChild(createRowElem(childData['buycost']));
-                                //}
-                    table.appendChild(trBody);
+                    }
                 });
         });
 
@@ -71,7 +79,4 @@ function mysfunc() {
             else tr[i].style.display = "none";
         }
     }
-}
-function clickDirect(){
-    window.location.assign("addProdAmount.html");
 }

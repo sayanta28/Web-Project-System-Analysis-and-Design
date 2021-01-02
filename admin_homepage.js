@@ -22,6 +22,8 @@ document.getElementById("body").onload = function () {
         td.appendChild(document.createTextNode(value));
         return td;
     }
+    let sum = 0;
+    let sumTempProfit = 0;
         var ref = firebase.database().ref('inventory');
             ref.once('value', (snapshot) => {
         // console.log('Hello');
@@ -32,13 +34,19 @@ document.getElementById("body").onload = function () {
 
             
                 var table = document.getElementById('inventory-table');
-                let sum = 0;
+                
                 let temp = 0;
+                let tempProfit = 0;
+                
                 snapshot.forEach(childSnapshot => {
                     var childKey = childSnapshot.key;
                     var childData = childSnapshot.val();
+                    
+                    tempProfit = childData['totalbuy'] * childData['buycost'];
+                    sumTempProfit += tempProfit;
                     temp = childData['totalsel'] * childData['unitcost'];
                     sum += temp;
+                    console.log("TempPro: ", temp);
                     //console.log(childKey);
                     //console.log(childData['name']);
 
@@ -55,7 +63,21 @@ document.getElementById("body").onload = function () {
 
             let str = sum.toString() + " Taka";
             document.getElementById("totalsel").innerHTML = str;
+            
+            let str2 = sumTempProfit.toString() + " Taka";
+            document.getElementById("totalInvest").innerHTML = str2;
+
+
         });
+
+        refTwo = firebase.database().ref('tokenRecord/totalProfit');
+        refTwo.once('value',(snapshot) => {
+            totalProfit = snapshot.val();
+            let str = totalProfit.toString() + " Taka";
+            document.getElementById("totalProfit").innerHTML = str;
+        });
+
+
         //Old
     //     let sum = 0;
     //     let temp = 0;
