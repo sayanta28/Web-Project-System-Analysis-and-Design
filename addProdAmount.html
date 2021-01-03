@@ -13,7 +13,7 @@
         <div id = "form">
             <h1 align="center" style="margin-bottom: 10px;">Add New Product in Inventory</h1>
             <hr style="margin-bottom: 20px;">
-            <form id="cusform" action="inventoryPage.html">
+            <form id="cusform">
                 <label for="id">Prod-ID</label><br>
                 <input id="id" type="number" placeholder="Enter Unique Four Digit Prod-ID [Ex: 1021]"><br>
                 <label for="amount">Amount of Unit Buy</label><br>
@@ -24,7 +24,7 @@
                 <input id="sellCost" type="number" placeholder="Enter Sell Cost (Per Unit) [Ex: For 110 tk per Liter = 110]"><br>
                 <label for="mobNo">Contact Number of Whole-Seller</label><br>
                 <input id="mobNo" type="text" placeholder="Enter 11-digit Phone Number [Ex: 018XXXXXXXX]"><br>          
-                <button id="addbutton" type="submit" onclick="tap()">Add User</button>
+                <button id="addbutton" type="button" onclick="tap()">Add User</button>
             </form>
         </div>
         <div class="loader" id="classId"></div>

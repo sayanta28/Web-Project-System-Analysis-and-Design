@@ -27,16 +27,10 @@ function tap() {
     // console.log('Tap 2');
     Ready();
 
-    if (nameV == "" || nameV == null || idV == "" || idV == null || amountV == "" || amountV == null || buyCostV == "" || buyCostV == null || sellCostV == "" || sellCostV == null || mobNoV == "" || mobNoV == null) {
+    if ( idV == "" || idV == null || amountV == "" || amountV == null || buyCostV == "" || buyCostV == null || sellCostV == "" || sellCostV == null || mobNoV == "" || mobNoV == null) {
         alert("All field Must be filled out");
         return false;
       }
-    else if(dateV == "" || dateV == null){
-        alert("Date field Must be filled out");
-        // Start
-
-        return false;
-    }
     else{
        if(idV.length >= 4){
            var test = false;
@@ -62,7 +56,16 @@ function tap() {
                                 insert();
                                 //test = true;
                             }
-                    });
+                            else{
+                                test = true;
+                            }
+                        });
+                        
+                    if(test == true){
+                        alert("Prod-ID not exists");
+                            
+                    }
+
                    
             });
             
@@ -85,12 +88,13 @@ function insert(){
     div.style.visibility = "visible";
 
     presentAmount = parseInt(presentAmount);
+    amountV = parseInt(amountV);
     totalBuyAmount = parseInt(totalBuyAmount);
     totalSelAmount = parseInt(totalSelAmount);
     buyCostV = parseInt(buyCostV);
     sellCostV = parseInt(sellCostV);
     presentAmount = presentAmount + amountV;
-    totalBuyAmount = totalBuyAmount + presentAmount;
+    totalBuyAmount = totalBuyAmount + amountV;
 
     firebase.database().ref('inventory/' + idV).update({
             amount: presentAmount,
@@ -103,6 +107,7 @@ function insert(){
 }
 
 function swith() {
+    //alert("Done..!");
     window.location.assign("inventoryPage.html");
     //console.log("Hellllo2");
 }
