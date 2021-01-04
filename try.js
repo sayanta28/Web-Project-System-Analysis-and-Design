@@ -39,71 +39,122 @@ function tap(){
     }
     else{
         // Add totalbBuyNow = 0 Condition and token ID + 2 solve
-        ref = firebase.database().ref('inventory/'+ prodIDV);
-        ref.once('value', (snapshot) => {
-                //var childSnapshot = 'customer';
-                // snapshot.forEach(childSnapshot => {
-                //     var id = childSnapshot.key;
+          
+        // testRef1 = firebase.database().ref('inventory/');
+        // ref.once('value',)
+        // var hasName1 = snapshot.hasChild(prodIDV);
+        // testRef2 = firebase.database().ref('customer/');
+        // var hasName2 = snapshot.hasChild(cusIDV);
+        // console.log("Has12 ", hasName1,hasName2);
+            let childHas1 = false;
+            let childHas2 = false;
+            {
 
-                    const val = snapshot.val();
-                    var setCost = val['unitcost'];
-                    setCost = parseInt(setCost);
-                    var buyCost = val['buycost'];
-                    buyCost = parseInt(buyCost);
-                    totalBuyNow = val['amount'];
-                    totalBuyNow = parseInt(totalBuyNow);
-                    totalSelNow = val['totalsel'];
-                    totalSelNow = parseInt(totalSelNow);
-                    prodName = val['name'];
-                    cost = setCost * unitV;
-                    profit = (setCost - buyCost) * unitV
-                    profit = parseInt(profit);
-                    console.log(prodName);
-                    console.log(cost);
-
-                    //console.log(childSnapshot.val())
-                    //simplyfy korte hobe
-                });
-                
-                refTwo = firebase.database().ref('customer/'+ cusIDV);
-                refTwo.once('value', (snapshot) => {
+                ref = firebase.database().ref('inventory/'+ prodIDV);
+                ref.once('value', (snapshot) => {
                     //var childSnapshot = 'customer';
                     // snapshot.forEach(childSnapshot => {
                         //     var id = childSnapshot.key;
+                        const val = snapshot.val();
+                        if(val){
+
+                            var setCost = val['unitcost'];
+                            setCost = parseInt(setCost);
+                            var buyCost = val['buycost'];
+                            buyCost = parseInt(buyCost);
+                            totalBuyNow = val['amount'];
+                            totalBuyNow = parseInt(totalBuyNow);
+                            totalSelNow = val['totalsel'];
+                            totalSelNow = parseInt(totalSelNow);
+                            prodName = val['name'];
+                            cost = setCost * unitV;
+                            profit = (setCost - buyCost) * unitV
+                            profit = parseInt(profit);
+                            console.log(prodName);
+                            console.log(cost);
+                            childHas1 = true;
+                            console.log("childHas1 = ",childHas1);
+                        }
+                        else{
+                            alert("ProdID Not exists");
+                            return false;
+                        }
                         
-                        const valTwo = snapshot.val();
-                        cusName = valTwo['name'];
-                        cusCost = valTwo['totalPaid'];
-                        cusCost = parseInt(cusCost);
+                        //console.log(childSnapshot.val())
+                        //simplyfy korte hobe
+                    });
+                    
+                    refTwo = firebase.database().ref('customer/'+ cusIDV);
+                   // console.log("Reff",refTwo.exists());
+                    refTwo.once('value', (snapshot) => {
+                        //var childSnapshot = 'customer';
+                        // snapshot.forEach(childSnapshot => {
+                            //     var id = childSnapshot.key;
+                            
+                            const valTwo = snapshot.val();
+                            console.log("reff222",valTwo)
+                            if(valTwo){
+                                cusName = valTwo['name'];
+                                cusCost = valTwo['totalPaid'];
+                                cusCost = parseInt(cusCost);
+                                childHas2 = true;
+                            }
+                            else{
+                                alert("CusID Not exists");
+                                return false;
+                            }
                         //console.log(cusName);
                         //console.log(typeof(cusName));
 
 
                         //console.log(childSnapshot.val())                            //simplyfy korte hobe
                 });
+
+                {
+                    
+                    setTimeout(() => {
+                        
+                        console.log("childHas1 ", childHas1);
+                        console.log("childHas2 ", childHas2);
+                        if(childHas1 == true && childHas2 == true ){
+                                unitV = parseInt(unitV);
+                                console.log("11111");
+                                if(unitV <= totalBuyNow){
+                                    console.log("22222");
+                                    refThree = firebase.database().ref('tokenRecord/totalProfit');
+                                    refThree.once('value', (snapshot) => {
                 
-                refThree = firebase.database().ref('tokenRecord/totalProfit');
-                refThree.once('value', (snapshot) => {
+                                        currentTotalProfit = snapshot.val();
+                                        currentTotalProfit = parseInt(currentTotalProfit)
+                                        console.log('totalProfit');
+                                        console.log(snapshot.val());
+                                    });
+                                    refFour = firebase.database().ref('tokenRecord/totalSell');
+                                    refFour.once('value', (snapshot) => {
+                
+                                        currentTotalSell = snapshot.val();
+                                        currentTotalSell = parseInt(currentTotalSell);
+                                        console.log('totalSell');
+                                        console.log(snapshot.val());
+                                    });
+                
+                                    var loader = document.getElementById("classId");
+                                    loader.style.visibility = "visible";
+                                    setTimeout(function() {
+                                        swith(prodName, cost, cusName);
+                                    }, 5000); 
+                
+                            }
+                            else{
+                                console.log("Vurrent AM",totalBuyNow);
+                                alert("Amount should make less");
+                                return false;
+                            }
+                        }
+                    }, 2000);
 
-                    currentTotalProfit = snapshot.val();
-                    currentTotalProfit = parseInt(currentTotalProfit)
-                    console.log('totalProfit');
-                    console.log(snapshot.val());
-                });
-                refFour = firebase.database().ref('tokenRecord/totalSell');
-                refFour.once('value', (snapshot) => {
-
-                    currentTotalSell = snapshot.val();
-                    currentTotalSell = parseInt(currentTotalSell);
-                    console.log('totalSell');
-                    console.log(snapshot.val());
-                });
-
-            var loader = document.getElementById("classId");
-            loader.style.visibility = "visible";
-            setTimeout(function() {
-                swith(prodName, cost, cusName);
-            }, 5000); 
+                }   
+            }
         }
         
     }
