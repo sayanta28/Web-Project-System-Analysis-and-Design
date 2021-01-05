@@ -21,8 +21,6 @@ function Ready(){
     addV = document.getElementById('address').value;
 }
 
-
-
 document.getElementById('addbutton').onclick = function () {
     Ready();
     if (nameV == "" || nameV == null || idV == "" || idV == null || emailV == "" || emailV == null || numV == "" || numV == null || addV == "" || addV == null) {
