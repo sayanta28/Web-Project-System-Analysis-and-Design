@@ -50,38 +50,6 @@ document.getElementById("body").onload = function () {
                 });
         });
 
-        
-
-    //     //Old
-    //     ref.on('value', function(snapshot){
-    //     //console.log('Hello');
-    //     //console.log(snapshot);
-
-    //     let dataObj = snapshot.val();
-    //     // console.log(dataObj);
-    //     let data = Object.values(snapshot.val());
-
-        
-    //     var table = document.getElementById('customer_table');
-        
-        
-    //     data.map((number) => {
-        
-    //         var trBody = document.createElement('tr');
-
-    //         trBody.appendChild(createRowElem(number['name']));
-    //             trBody.appendChild(createRowElem(number['id']));
-    //             trBody.appendChild(createRowElem(number['totalDue']));
-    //             trBody.appendChild(createRowElem(number['totalPaid']));
-    //             trBody.appendChild(createRowElem(number['email']));
-    //             trBody.appendChild(createRowElem(number['phone']));
-    //             trBody.appendChild(createRowElem(number['address']));
-    //             trBody.appendChild(createRowElem(number['regDate']));
-    //                     //}
-    //         table.appendChild(trBody);
-    //     });
-                    
-    // });
 }
 
 // SearchBTN

@@ -23,8 +23,6 @@ function Ready(){
 }
 
 function tap() {
-    // alert("Tap Tap");
-    // console.log('Tap 2');
     Ready();
 
     if ( idV == "" || idV == null || amountV == "" || amountV == null || buyCostV == "" || buyCostV == null || sellCostV == "" || sellCostV == null || mobNoV == "" || mobNoV == null) {
@@ -39,9 +37,7 @@ function tap() {
                     //var childSnapshot = 'customer';
                     snapshot.forEach(childSnapshot => {
                         var id = childSnapshot.key;
-                        //console.log(childSnapshot.val());
-
-                        
+                        //console.log(childSnapshot.val());    
                     var childData = childSnapshot.val();
                     //console.log(childKey);
                     presentAmount = childData['amount'];
@@ -50,26 +46,22 @@ function tap() {
                     totalBuyAmount = parseInt(totalBuyAmount);
                     totalSelAmount = childData['totalsel'];
                     totalSelAmount = parseInt(totalSelAmount);
-
-                        //simplyfy korte hobe
-                            if(id == idV){
-                                insert();
-                                //test = true;
-                            }
-                            else{
-                                test = true;
-                            }
-                        });
+                       
+                        if(id == idV){
+                            insert();
+                              
+                        }
+                        else{
+                            test = true;
+                        }
+                    });
                         
                     if(test == true){
                         alert("Prod-ID not exists");
                             
                     }
-
                    
             });
-            
-           
 
        }
         else {
@@ -77,9 +69,6 @@ function tap() {
             return false;
         }
         
-            // console.log('Tapp Tapp');
-        
-            // console.log('Tapp Tapp2');
     }
 }
 
@@ -107,7 +96,6 @@ function insert(){
 }
 
 function swith() {
-    //alert("Done..!");
     window.location.assign("inventoryPage.html");
     //console.log("Hellllo2");
 }

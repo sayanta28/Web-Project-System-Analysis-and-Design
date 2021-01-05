@@ -35,9 +35,7 @@ document.getElementById('addbutton').onclick = function () {
 
         return false;
     }
-    // else if(idV){
-        
-    // }
+    
     else {
         var test = false;
         ref = firebase.database().ref('customer');
@@ -54,7 +52,7 @@ document.getElementById('addbutton').onclick = function () {
                         return false;
                     }
                 });
-                //Bug Fix Use it
+               
                 if(test == false){
                     console.log('Insert');
                     console.log(3);

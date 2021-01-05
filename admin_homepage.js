@@ -28,11 +28,6 @@ document.getElementById("body").onload = function () {
             ref.once('value', (snapshot) => {
         // console.log('Hello');
 
-            ////let dataObj = snapshot.val();
-            //console.log(dataObj)
-            ////let data = Object.values(snapshot.val());
-
-            
                 var table = document.getElementById('inventory-table');
                 
                 let temp = 0;
@@ -77,29 +72,6 @@ document.getElementById("body").onload = function () {
             document.getElementById("totalProfit").innerHTML = str;
         });
 
-
-        //Old
-    //     let sum = 0;
-    //     let temp = 0;
-    //     data.map((number) => {
-    //         temp = number['totalsel'] * number['unitcost'];
-    //         sum += temp;
-    //         var trBody = document.createElement('tr');
-
-    //         trBody.appendChild(createRowElem(number['name'].toUpperCase()));
-    //             trBody.appendChild(createRowElem(number['amount']));
-    //             trBody.appendChild(createRowElem(number['totalbuy']));
-    //             trBody.appendChild(createRowElem(number['totalsel']));
-    //             trBody.appendChild(createRowElem(number['unitcost']));
-    //                     //}
-    //         table.appendChild(trBody);
-    //     });
-    //     let str = sum.toString() + " Taka";
-    //     //console.log("sum: " + sum)
-        
-    //     document.getElementById("totalsel").innerHTML = str;
-                    
-    // });
 }
 // Table load end
 

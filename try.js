@@ -38,23 +38,14 @@ function tap(){
         return false;
     }
     else{
-        // Add totalbBuyNow = 0 Condition and token ID + 2 solve
-          
-        // testRef1 = firebase.database().ref('inventory/');
-        // ref.once('value',)
-        // var hasName1 = snapshot.hasChild(prodIDV);
-        // testRef2 = firebase.database().ref('customer/');
-        // var hasName2 = snapshot.hasChild(cusIDV);
-        // console.log("Has12 ", hasName1,hasName2);
+     
             let childHas1 = false;
             let childHas2 = false;
             {
 
                 ref = firebase.database().ref('inventory/'+ prodIDV);
                 ref.once('value', (snapshot) => {
-                    //var childSnapshot = 'customer';
-                    // snapshot.forEach(childSnapshot => {
-                        //     var id = childSnapshot.key;
+                   
                         const val = snapshot.val();
                         if(val){
 
@@ -80,16 +71,12 @@ function tap(){
                             return false;
                         }
                         
-                        //console.log(childSnapshot.val())
-                        //simplyfy korte hobe
                     });
                     
                     refTwo = firebase.database().ref('customer/'+ cusIDV);
                    // console.log("Reff",refTwo.exists());
                     refTwo.once('value', (snapshot) => {
-                        //var childSnapshot = 'customer';
-                        // snapshot.forEach(childSnapshot => {
-                            //     var id = childSnapshot.key;
+                      
                             
                             const valTwo = snapshot.val();
                             console.log("reff222",valTwo)
@@ -103,11 +90,7 @@ function tap(){
                                 alert("CusID Not exists");
                                 return false;
                             }
-                        //console.log(cusName);
-                        //console.log(typeof(cusName));
-
-
-                        //console.log(childSnapshot.val())                            //simplyfy korte hobe
+                                
                 });
 
                 {

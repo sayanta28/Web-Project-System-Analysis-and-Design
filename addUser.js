@@ -60,17 +60,13 @@ function tap() {
                     } 
                     //else return false;
             });
-            
-           
 
        }
         else {
             alert("Product ID must be Length 4 or more!");
             return false;
         }
-        
             // console.log('Tapp Tapp');
-        
             // console.log('Tapp Tapp2');
     }
 }
